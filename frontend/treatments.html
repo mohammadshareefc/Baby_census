@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treatments</title>
+    
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Treatments</a></li>
+                                <li class="breadcrumb-item active">View Treatments</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Treatment Details</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <div class="mb-2">
+                            <div class="row">
+                                <div class="col-12 text-sm-center form-inline">
+                                    <div class="form-group">
+                                        <input id="treatment-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <button class="btn btn-primary" onclick="showTreatmentForm()">Create New Treatment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="treatment-table" class="table table-bordered toggle-circle mb-0 no-paging">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Treatment Name</th>
+                                        <th>Prescription</th>
+                                        <th>Patient</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="treatmentTableBody">
+                                    <!-- Treatment data will be populated here -->
+                                </tbody>
+
+                                <tfoot>
+                                    <tr class="active">
+                                        <td colspan="5">
+                                            <div class="text-right">
+                                                <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0">
+                                                    <li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li>
+                                                    <li class="footable-page active"><a data-page="0" href="#">1</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="next" href="#next">›</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="last" href="#last">»</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div> <!-- end .table-responsive-->
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div> <!-- container -->
+
+        <!-- Treatment Creation Form (Hidden by default) -->
+        <div id="treatmentPopup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close-button" onclick="closeTreatmentForm()">&times;</span>
+                <form id="treatmentForm">
+                    <h2>Create New Treatment</h2>
+
+                    <div class="form-group">
+                        <label for="treatmentName">Treatment Name</label>
+                        <input type="text" id="treatmentName" name="treatmentName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prescription">Prescription</label>
+                        <textarea id="prescription" name="prescription" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patientId">Patient</label>
+                        <select id="patientId" name="patientId" required>
+                            <option value="">Select a patient</option>
+                        </select>
+                    </div> 
+                    <div class="form-group" hidden>
+                        <label for="hospitalId">Hospital ID</label>
+                        <input type="number" id="hospitalId" name="hospitalId" required hidden>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" onclick="closeTreatmentForm()">Cancel</button>
+                        <button type="submit" id="treatmentSubmitButton" onclick="submitTreatmentForm(event)">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="./assets/js/scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Patients</a></li>
+                                <li class="breadcrumb-item active">View Patients</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Patient Details</h4>
+                    </div>
+                </div>
+            </div>     
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <div class="mb-2">
+                            <div class="row">
+                                <div class="col-12 text-sm-center form-inline">
+                                    <div class="form-group">
+                                        <input id="patient-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <button class="btn btn-primary" onclick="showPatientForm()">Create New Patient</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="patient-table" class="table table-bordered toggle-circle mb-0 no-paging">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Aadhaar</th>
+                                    <th>Blood Group</th>
+                                    <th>Husband Aadhaar</th>
+                                    <th>Doctor</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                
+                                <tbody id="patientTableBody">
+                                <!-- Patient data will be populated here -->
+                                </tbody>
+                                
+                                <tfoot>
+                                <tr class="active">
+                                    <td colspan="8">
+                                        <div class="text-right">
+                                            <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0">
+                                                <li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li>
+                                                <li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li>
+                                                <li class="footable-page active"><a data-page="0" href="#">1</a></li>
+                                                <li class="footable-page-arrow disabled"><a data-page="next" href="#next">›</a></li>
+                                                <li class="footable-page-arrow disabled"><a data-page="last" href="#last">»</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div> <!-- end .table-responsive-->
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+        </div> <!-- container -->
+
+        <!-- Patient Creation Form (Hidden by default) -->
+        <div id="patientPopup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close-button" onclick="closePatientForm()">&times;</span>
+                <form id="patientForm">
+                    <h2>Create New Patient</h2>
+                
+                    <div class="form-group">
+                        <label for="patientName">Name</label>
+                        <input type="text" id="patientName" name="patientName" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="patientContact">Contact</label>
+                        <input type="text" id="patientContact" name="patientContact" required 
+                               pattern="\d{10}"  minlength="10" maxlength="10"  title="Contact number must be 10 digits">
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="patientAadhaar">Aadhaar</label>
+                        <input type="text" id="patientAadhaar" name="patientAadhaar" required
+                               pattern="\d{12}"  minlength="12" maxlength="12"  title="Aadhaar number must be 12 digits">
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="patientBloodGroup">Blood Group</label>
+                        <select id="patientBloodGroup" name="patientBloodGroup" required>
+                            <option value="">Select a blood group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="patientHusband">Husband Aadhaar</label>
+                        <input type="text" id="patientHusband" name="patientHusband" 
+                               pattern="\d{12}" minlength="12" maxlength="12" title="Aadhaar number must be 12 digits">
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="doctorId">Doctor</label>
+                        <select id="doctorId" name="doctorId" required>
+                            <option value="">Select a doctor</option> <!-- Placeholder option -->
+                            <!-- Doctors will be populated here -->
+                        </select>
+                    </div>
+                
+                    <div class="form-group" hidden>
+                        <label for="hospitalId">hospitalId</label>
+                        <input type="text" id="hospitalId" name="hospitalId" required hidden>
+                    </div>
+                
+                    <div class="form-group">
+                        <button type="button" onclick="closePatientForm()">Cancel</button>
+                        <button type="submit" id="patientSubmitButton" onclick="submitPatientForm(event)">Create</button> 
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <script src="./assets/js/scripts.js"></script>
+</body>
+
+</html>

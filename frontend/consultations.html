@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultations</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Consultations</a></li>
+                                <li class="breadcrumb-item active">View Consultations</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Consultation Details</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <div class="mb-2">
+                            <div class="row">
+                                <div class="col-12 text-sm-center form-inline">
+                                    <div class="form-group">
+                                        <input id="consultation-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <button class="btn btn-primary" onclick="showConsultationForm()">Create New Consultation</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="consultation-table" class="table table-bordered toggle-circle mb-0 no-paging">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Patient</th>
+                                        <th>Doctor</th>
+                                        <th>Details</th>
+                                        <th>Report</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="consultationTableBody">
+                                    <!-- Consultation data will be populated here -->
+                                </tbody>
+
+                                <tfoot>
+                                    <tr class="active">
+                                        <td colspan="7">
+                                            <div class="text-right">
+                                                <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0">
+                                                    <li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li>
+                                                    <li class="footable-page active"><a data-page="0" href="#">1</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="next" href="#next">›</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="last" href="#last">»</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div> <!-- end .table-responsive-->
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+        </div> <!-- container -->
+
+        <!-- Consultation Creation Form (Hidden by default) -->
+        <div id="consultationPopup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close-button" onclick="closeConsultationForm()">&times;</span>
+                <form id="consultationForm">
+                    <h2>Create New Consultation</h2>
+
+                    <div class="form-group">
+                        <label for="consultationDate">Date</label>
+                        <input type="date" id="consultationDate" name="consultationDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patientId">Patient</label>
+                        <select id="patientId" name="patientId" required>
+                            <option value="">Select a patient</option>
+                            <!-- Populate with patient options here -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="doctorId">Doctor</label>
+                        <select id="doctorId" name="doctorId" required>
+                            <option value="">Select a doctor</option>
+                            <!-- Populate with doctor options here -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consultationDetails">Details</label>
+                        <textarea id="consultationDetails" name="consultationDetails" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consultationReport">Report</label>
+                        <input type="text" id="consultationReport" name="consultationReport" required>
+                    </div>
+
+                    <div class="form-group" hidden>
+                        <label for="hospitalId">Hospital ID</label>
+                        <input type="number" id="hospitalId" name="hospitalId" required hidden>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="button" onclick="closeConsultationForm()">Cancel</button>
+                        <button type="submit" id="consultationSubmitButton" onclick="submitConsultationForm(event)">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="./assets/js/scripts.js"></script>
+    <script>
+        // Function to show the consultation creation form
+        function showConsultationForm() {
+            document.getElementById('consultationPopup').style.display = 'block';
+        }
+
+        // Function to close the consultation creation form
+        function closeConsultationForm() {
+            document.getElementById('consultationPopup').style.display = 'none';
+        }
+
+        // Function to handle the form submission
+        function submitConsultationForm(event) {
+            event.preventDefault();
+            // Add your form submission logic here (e.g., AJAX request to PHP script)
+        }
+    </script>
+</body>
+
+</html>

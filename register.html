@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+        <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    
+    
+    
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <title>Login</title>
+    
+        <style>
+    
+        body{
+            background: url("../assets/img/hero-bg.jpg");
+        }
+    form {
+        width: 400px;
+        margin: 30px auto;
+        padding: 32px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        background-color: rgb(165, 165, 167);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    label {
+        width: 30%; /* Adjust label width */
+        font-weight: bold;
+        color: #145da0;
+    }
+    
+    input {
+        width: 65%; /* Adjust input width */
+        padding: 8px;
+        border: 1.5px solid black;
+        border-radius: 4px;
+    }
+    
+    button {
+        padding: 5px;
+        width: 40%;
+        background: #1977cc;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        margin: 10px auto;
+        cursor: pointer;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+    }
+    
+    button:hover {
+        background-color: #145da0;
+    }
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    .register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #1977cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+    
+        </style>
+    </head>
+    <body>
+    
+        <header id="header" class="header sticky-top">
+        
+            <div class="branding d-flex align-items-center">
+        
+              <div class="container position-relative d-flex align-items-center justify-content-between">
+                <a href="index.html" class="logo d-flex align-items-center me-auto">
+                  <!-- Uncomment the line below if you also wish to use an image logo -->
+                  <!-- <img src="../assets/img/logo.png" alt=""> -->
+                  <h1 class="sitename">Baby Census Blog</h1>
+                </a>
+        
+                <nav id="navmenu" class="navmenu">
+                  <ul>
+                    <li><a href="index.html" class="active">Home<br></a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                       
+                    </ul>
+                   
+                  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+        
+                <!-- <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a> -->
+        
+              </div>
+        
+            </div>
+        
+          </header>
+    
+    <div>
+    <form id="registerForm" onsubmit="return validatePasswords()">
+        <h2>EBABY CENSUS REGISTER</h2>
+    
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="retype-password">Retype Password:</label>
+            <input type="password" id="retype-password" name="retype-password" placeholder="Retype your password" required>
+        </div>
+    
+        <hr>
+        <button type="submit">Register</button>
+    
+        <div class="login-link">
+            <p>If you already have an account, <a href="userlogin.html">Login here</a>.</p>
+        </div>
+    </form>
+    
+    
+    </div>
+    <script>
+        function validatePasswords() {
+            const password = document.getElementById("password").value;
+            const retypePassword = document.getElementById("retype-password").value;
+    
+            if (password !== retypePassword) {
+                alert("Passwords do not match. Please try again.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    </script>
+    <script >
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const retypePassword = document.getElementById('retype-password').value;
+
+    // Check if the passwords match
+    if (password !== retypePassword) {
+        alert('Passwords do not match. Please try again.');
+        return;
+    }
+
+    // Send the registration data to the backend
+    const response = await fetch('./api/register.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+    });
+
+    const data = await response.json();
+    if (data.success) {
+    // Show success alert
+    alert('Registration successful!');
+
+    
+    console.log("registered successfully");
+   
+    sessionStorage.clear();
+    // Store user details in sessionStorage
+    sessionStorage.setItem('userId', data.id);  // User ID
+    sessionStorage.setItem('username', data.username); // Username
+    sessionStorage.setItem('email', data.email);       // Email
+
+
+    // Redirect to login page or home page after successful registration
+    window.location.href = './userlogin.html';
+    } else {
+        // Display an error message
+        alert('Registration failed: ' + data.message);
+    }
+
+});
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccines</title>
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Vaccines</a></li>
+                                <li class="breadcrumb-item active">View Vaccines</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Vaccine Details</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <div class="mb-2">
+                            <div class="row">
+                                <div class="col-12 text-sm-center form-inline">
+                                    <div class="form-group">
+                                        <input id="vaccine-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <button class="btn btn-primary" onclick="showVaccineForm()">Create New Vaccine</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="vaccine-table" class="table table-bordered toggle-circle mb-0 no-paging">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Date of Vaccination</th>
+                                        <th>Baby ID</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="vaccineTableBody">
+                                    <!-- Vaccine data will be populated here -->
+                                </tbody>
+
+                                <tfoot>
+                                    <tr class="active">
+                                        <td colspan="6">
+                                            <div class="text-right">
+                                                <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0">
+                                                    <li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li>
+                                                    <li class="footable-page active"><a data-page="0" href="#">1</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="next" href="#next">›</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="last" href="#last">»</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div> <!-- end .table-responsive-->
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div> <!-- container -->
+
+        <!-- Vaccine Creation Form (Hidden by default) -->
+        <div id="vaccinePopup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close-button" onclick="closeVaccineForm()">&times;</span>
+                <form id="vaccineForm">
+                    <h2>Create New Vaccine</h2>
+
+                    <div class="form-group">
+                        <label for="vaccineName">Name</label>
+                        <input type="text" id="vaccineName" name="vaccineName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vaccinationDate">Date of Vaccination</label>
+                        <input type="date" id="vaccinationDate" name="vaccinationDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="babyId">Baby ID</label>
+                        <select id="babyId" name="babyId" required>
+                            <option value="">Select a baby</option>
+                            <!-- Populate baby options dynamically -->
+                        </select>
+                    </div>
+
+                    <div class="form-group" hidden>
+                        <label for="hospitalId">Hospital ID</label>
+                        <input type="number" id="hospitalId" name="hospitalId" required hidden>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" onclick="closeVaccineForm()">Cancel</button>
+                        <button type="submit" id="vaccineSubmitButton" onclick="submitVaccineForm(event)">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="./assets/js/scripts.js"></script>
+</body>
+
+</html>

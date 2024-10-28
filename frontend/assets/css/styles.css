@@ -1,0 +1,166 @@
+/* frontend/css/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+form {
+    width: 300px;
+    margin: 200px auto;
+    padding: 32px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: rgb(205, 198, 204);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+label {
+    width: 30%; /* Adjust label width */
+    font-weight: bold;
+}
+
+input {
+    width: 60%; /* Adjust input width */
+    padding: 8px;
+    border: 1.5px solid black;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    width: 50%;
+    background: #1977cc;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #145da0;
+}
+
+
+h2 {
+    text-align: center;
+}
+
+
+header {
+    background-color: #1977cc;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-right: 100px;
+    display: flex;
+    justify-content: right;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.about-us {
+    padding: 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-us h2 {
+    color: #1977cc;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.about-us p {
+    line-height: 1.6;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.about-us h3 {
+    color: #1977cc;
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #1977cc;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px gray;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.graph-section {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    width: 100%;
+    height: 400px;
+}
+
+canvas {
+    display: block;
+    width: 100% !important;
+    height: 400px !important;
+}
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+

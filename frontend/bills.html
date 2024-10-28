@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bills</title>
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Bills</a></li>
+                                <li class="breadcrumb-item active">View Bills</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Bill Details</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <div class="mb-2">
+                            <div class="row">
+                                <div class="col-12 text-sm-center form-inline">
+                                    <div class="form-group">
+                                        <input id="bill-search" type="text" placeholder="Search" class="form-control form-control-sm" autocomplete="on">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <button class="btn btn-primary" onclick="showBillForm()">Create New Bill</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="bill-table" class="table table-bordered toggle-circle mb-0 no-paging">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Amount</th>
+                                        <th>Details</th>
+                                        <th>Patient</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="billTableBody">
+                                    <!-- Bill data will be populated here -->
+                                </tbody>
+
+                                <tfoot>
+                                    <tr class="active">
+                                        <td colspan="5">
+                                            <div class="text-right">
+                                                <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0">
+                                                    <li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li>
+                                                    <li class="footable-page active"><a data-page="0" href="#">1</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="next" href="#next">›</a></li>
+                                                    <li class="footable-page-arrow disabled"><a data-page="last" href="#last">»</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div> <!-- end .table-responsive-->
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+        </div> <!-- container -->
+
+        <!-- Bill Creation Form (Hidden by default) -->
+        <div id="billPopup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close-button" onclick="closeBillForm()">&times;</span>
+                <form id="billForm">
+                    <h2>Create New Bill</h2>
+
+                    <div class="form-group">
+                        <label for="billAmount">Amount</label>
+                        <input type="number" step="0.01" id="billAmount" name="billAmount" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="billDetails">Details</label>
+                        <textarea id="billDetails" name="billDetails" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patientId">Patient</label>
+                        <select id="patientId" name="patientId" required>
+                            <option value="">Select a patient</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" hidden>
+                        <label for="hospitalId">Hospital ID</label>
+                        <input type="number" id="hospitalId" name="hospitalId" required hidden>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" onclick="closeBillForm()">Cancel</button>
+                        <button type="submit" id="billSubmitButton" onclick="submitBillForm(event)">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="./assets/js/scripts.js"></script>
+</body>
+
+</html>
